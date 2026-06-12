@@ -1,0 +1,30 @@
+frontend
+=>npm create vite@latest
+=>npm install(if not install with first command)
+=>npm run build
+
+backend
+=>npm init -y
+=>npm i express@4.21.2 mongoose@8.10.1 jsonwebtoken@9.0.2 bcryptjs@2.4.3
+=>npm i dotenv@16.4.7 cookie-parser@1.4.7
+
+root
+=>npm init -y
+
+
+
+if(--watch) not work then install nodemon extension by using command 
+npm i nodemon -D
+
+
+
+
+if(npm i nodemon -D) not work then use 
+--watch
+"scripts": {
+    "dev":"node --watch server.js"
+  },
+
+
+in this app we sevalla! to deploy our application
+here we use sevalla because vercel or netlify not support socket.io and we make this app using socket.io
