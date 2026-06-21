@@ -14,7 +14,7 @@ const __dirname=path.resolve();
 const PORT= process.env.PORT || 3000;
 
 app.use(express.json())//req.body// to parse incoming JSON data in request bodies
-
+ 
 app.use("/api/auth",authRoutes);
 app.use("/api/messages",messageRoutes);
 

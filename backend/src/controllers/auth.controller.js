@@ -29,14 +29,20 @@ export const signup = async (req, res) => {
             password: hashedPassword
         })
         if (newUser) {
-            const token = generateToken(newUser._id, res);
-            await newUser.save();
+            // const token = generateToken(newUser._id, res);
+            // await newUser.save();
+
+            //persist first, then issue the cookie
+            const savedUser = await newUser.save();
+            generateToken(savedUser._id, res);
+
             res.status(201).json({ 
                 _id: newUser._id,
                 fullName: newUser.fullName,
                 email: newUser.email,
                 profilePic: newUser.profilePic,
             });
+            // todo:send a welcome email to user
         } else {
             res.status(400).json({ message: "Invalid user data" })
         }
