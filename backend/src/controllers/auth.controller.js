@@ -29,9 +29,11 @@ export const signup = async (req, res) => {
             password: hashedPassword
         })
         if (newUser) {
+            //before CR
             // const token = generateToken(newUser._id, res);
             // await newUser.save();
 
+            //after CR
             //persist first, then issue the cookie
             const savedUser = await newUser.save();
             generateToken(savedUser._id, res);
@@ -43,6 +45,7 @@ export const signup = async (req, res) => {
                 profilePic: newUser.profilePic,
             });
             // todo:send a welcome email to user
+            tr
         } else {
             res.status(400).json({ message: "Invalid user data" })
         }
