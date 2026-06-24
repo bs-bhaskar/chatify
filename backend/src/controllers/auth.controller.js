@@ -1,14 +1,12 @@
-//test
-throw new Error("TEST AUTH CONTROLLER");
-//test
+
 import User from "../models/User.js";
-//test
-console.log("AUTH CONTROLLER VERSION 999");
-//test
+
 import bcrypt from "bcryptjs";
 import { generateToken } from "../lib/utils.js";
 import { sendWelcomeEmail } from "../emails/emailHandlers.js";
-import "dotenv/config";
+import { resendClient, sender } from "../lib/resend.js";
+import { ENV } from "../lib/env.js";
+
 export const signup = async (req, res) => {
     const { fullName, email, password } = req.body;
     try {
@@ -43,25 +41,16 @@ export const signup = async (req, res) => {
 
             //after CR
             //persist first, then issue the cookie
-            //test
-            console.log("1");
             const savedUser = await newUser.save();
-            console.log("2");
-            // generateToken(savedUser._id, res);
-            //test
+            generateToken(savedUser._id, res);
             res.status(201).json({ 
                 _id: newUser._id,
                 fullName: newUser.fullName,
                 email: newUser.email,
                 profilePic: newUser.profilePic,
             });
-            //test
-            console.log("3");
-            //test
             try{
-                //test
-                // await sendWelcomeEmail(savedUser.email, savedUser.fullName, process.env.CLIENT_URL);
-                //test
+                await sendWelcomeEmail(savedUser.email, savedUser.fullName, ENV.CLIENT_URL);
             }catch(error){
                 console.error("Error sending welcome email:", error);
             }
@@ -69,17 +58,7 @@ export const signup = async (req, res) => {
             res.status(400).json({ message: "Invalid user data" })
         }
     } catch (error) { 
-        // console.log("Error in signup controller:", error);
-        // res.status(500).json({ message: "Internal server error" })
-        //test
-        console.log("FULL ERROR:");
-    console.dir(error, { depth: null });
-
-    if (!res.headersSent) {
-        return res.status(500).json({
-            message: error.message,
-        });
-    }
-        //test
+        console.log("Error in signup controller:", error);
+        res.status(500).json({ message: "Internal server error" })
     }
 }
