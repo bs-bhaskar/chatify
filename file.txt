@@ -9,6 +9,7 @@ backend
 =>npm i dotenv@16.4.7 cookie-parser@1.4.7
 =>npm install resend@6.0.2
 =>npm i cloudinary@2.5.1
+=>npm i @arcjet/node@1.0.0-beta.10  @arcjet/inspect@1.0.0-beta.10
 
 root
 =>npm init -y
