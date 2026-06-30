@@ -2,6 +2,11 @@ frontend
 =>npm create vite@latest
 =>npm install(if not install with first command)
 =>npm run build
+=>"tailwindcss": "^3.4.19"
+=>npm i -D daisyui@v4.12.24
+=>npm i react-router-dom
+=>npm i axios
+=>npm install zustand@5.0.3
 
 backend
 =>npm init -y
