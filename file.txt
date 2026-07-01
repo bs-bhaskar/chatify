@@ -7,6 +7,8 @@ frontend
 =>npm i react-router-dom
 =>npm i axios
 =>npm install zustand@5.0.3
+=>npm i lucide-react
+=>npm i react-hot-toast
 
 backend
 =>npm init -y
@@ -15,6 +17,7 @@ backend
 =>npm install resend@6.0.2
 =>npm i cloudinary@2.5.1
 =>npm i @arcjet/node@1.0.0-beta.10  @arcjet/inspect@1.0.0-beta.10
+=>npm install cors
 
 root
 =>npm init -y
